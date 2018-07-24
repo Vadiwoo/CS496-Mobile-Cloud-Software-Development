@@ -1,0 +1,42 @@
+﻿<html lang="en">
+<head>
+    <title>OAuth 2.0 Implementation Results</title>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+</head>
+<body>
+    <header class="text-muted">
+        <div class="container">
+            <p class="float-left">
+
+            </p>
+            <p>Vadiwoo Karuppiah, CS496: MOBILE/CLOUD SOFTWARE DEVELOPMENT </p>
+
+        </div>
+    </header>
+    <div class="container">
+        <div class="jumbotron">
+            <h1 class="centered-text display-3">OAuth 2.0 Implementation Results</h1>
+            <p class="lead centered-text">
+            <p class="lead centered-text">
+                Congratulations! You have succesfully get the Access to your Google+ account's protected resource
+                (email).<br>The results are shown below.
+            </p>
+     
+                <strong>First Name</strong>: {{ fname }}
+                <br>
+               <strong>Last Name</strong>: {{ lname }}
+                <br>
+               <strong>Google+ Account Link</strong>: <a href="{{ gplink }}">{{ gplink_name }}</a>
+                <br>
+              <strong>State</strong>: {{ state }}
+               <br>
+            </p>
+            <p>
+                {{noAccount}}
+            </p>
+        </div>
+    </div>
+</body>
+</html>

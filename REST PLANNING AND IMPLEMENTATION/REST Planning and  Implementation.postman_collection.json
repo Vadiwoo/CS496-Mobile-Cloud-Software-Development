@@ -1,0 +1,753 @@
+{
+	"variables": [],
+	"info": {
+		"name": "REST Planning and  Implementation",
+		"_postman_id": "8340b071-aaa0-2ece-c159-91771f6e1fc1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Create a new boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"var res = JSON.parse(responseBody);",
+							"var id = res.id;",
+							"console.log(id);",
+							"\t\t\t\t\t\t\t",
+							"postman.setEnvironmentVariable(\"boatID\", id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"new_Boat\",\n\t\"type\" : \"large\",\n\t\"length\": 200\n}"
+				},
+				"description": "Create a boat"
+			},
+			"response": []
+		},
+		{
+			"name": "Create a new slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;\r",
+							"var res = JSON.parse(responseBody);\r",
+							"var id = res.id;\r",
+							"console.log(id);\r",
+							"postman.setEnvironmentVariable(\"slipID\", id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":2}"
+				},
+				"description": "creating a  new slip with"
+			},
+			"response": []
+		},
+		{
+			"name": "Edit Boat Information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Edited boat\"] = responseBody.has(\"Sun_Boat\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"name\":\"Sun_Boat\"}"
+				},
+				"description": "eidting boat's name"
+			},
+			"response": []
+		},
+		{
+			"name": "edit a slip information",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Edited slip\"] = responseBody.has(5);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\" : 5}"
+				},
+				"description": "editing slip nember"
+			},
+			"response": []
+		},
+		{
+			"name": "View all boats",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Showing all boats\"] = responseCode.code === 200;\r",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "getting all the boats"
+			},
+			"response": []
+		},
+		{
+			"name": "View a specific boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Showing requested boat\"] = responseCode.code === 200;\r",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat\\{{boatID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "view specific boat"
+			},
+			"response": []
+		},
+		{
+			"name": "View all slips",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Showing all slips\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "view all slips"
+			},
+			"response": []
+		},
+		{
+			"name": "View a specific slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Returned one slip\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{slipID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "View a specific slip"
+			},
+			"response": []
+		},
+		{
+			"name": "Put boat in a slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is in slip\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					},
+					{
+						"key": "boatID",
+						"value": "{{boatID}}",
+						"description": ""
+					},
+					{
+						"key": "slipID",
+						"value": "{{slipID}}",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"current_boat\": \"{{boatID}}\", \"arrival_date\":\"1/31/2018\"}\n"
+				},
+				"description": "a boat is assigned to a slip"
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm Boat is in slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat in slip\"] = responseBody.has(\"False\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put a boat at sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is at sea\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm a boat is at sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is at sea\"] = responseBody.has(\"True\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm a slip is empty",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Slip is now empty\"] = responseBody.has(\"None\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "confirm a slip is empty after a boat is moved from slip"
+			},
+			"response": []
+		},
+		{
+			"name": "Put boat back in slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is back to slip\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"current_boat\":\"{{boatID}}\", \"arrival_date\":\"1/31/2018\"}"
+				},
+				"description": "Put boat back in slip"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "DELETE",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": "Deleting a specifi boat"
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm a boat is deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is deleted\"] = responseBody.has(\"None\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm slip is empty after deleting a boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Slip empty after deleting boat\"] = responseBody.has(\"None\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "GET",
+				"header": [
+					{
+						"key": "",
+						"value": "",
+						"description": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create another new boat",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"var res = JSON.parse(responseBody);",
+							"var id = res.id;",
+							"console.log(id);",
+							"\t\t\t\t\t\t\t",
+							"postman.setEnvironmentVariable(\"boatID\", id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"name\" : \"new_Boat\",\n\t\"type\" : \"large\",\n\t\"length\": 200\n}"
+				},
+				"description": "create another new boat"
+			},
+			"response": []
+		},
+		{
+			"name": "Put the newly created boat at sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is in slip\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"current_boat\": \"{{boatID}}\", \"arrival_date\":\"2/1/2018\"}"
+				},
+				"description": "new aboat at sea"
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm slip is deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Slip is deleted\"] = responseBody.has(\"None\")",
+							""
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": "slip is deleted"
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm boat is at sea after deleting slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is deleted\"] = responseBody.has(\"True\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Creating another new slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;\r",
+							"var res = JSON.parse(responseBody);\r",
+							"var id = res.id;\r",
+							"console.log(id);\r",
+							"postman.setEnvironmentVariable(\"slipID\", id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"number\":2}"
+				},
+				"description": "new slip"
+			},
+			"response": []
+		},
+		{
+			"name": "Put boat in newly created slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is in slip\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"current_boat\": \"{{boatID}}\", \"arrival_date\":\"1/31/2018\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put a boat to a occupied slip",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Can't place in occupied slip\"] = responseCode.code === 403;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/slip/{{slipID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\"current_boat\": \"{{boatID}}\", \"arrival_date\":\"1/31/2018\"}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put boat back to sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Boat is at sea\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm boat at sea can't be put to sea",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Confirm boat can't be put to sea if currently in sea.\"] = responseBody.has(\"Cannot assign\");"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://planning-implementation-rest.appspot.com/boat/{{boatID}}",
+				"method": "PUT",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}
