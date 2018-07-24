@@ -1,0 +1,552 @@
+{
+	"variables": [],
+	"info": {
+		"name": "Final Project",
+		"_postman_id": "23300771-4b24-c99e-e44e-c81b88d813c1",
+		"description": "",
+		"schema": "https://schema.getpostman.com/json/collection/v2.0.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "get data from Pinterest using access_token",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Showing My User Data from Pinterest\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://api.pinterest.com/v1/me/?access_token={{access_token}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pinterest",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						""
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"description": ""
+					},
+					{
+						"key": "",
+						"value": "",
+						"disabled": true
+					}
+				],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "Get user info",
+			"request": {
+				"url": {
+					"raw": "https://api.pinterest.com/v1/me/?access_token={{access_token}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pinterest",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						""
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "get my boards",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"",
+							"tests[\"Showing all my Boards from Pinterest\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://api.pinterest.com/v1/me/boards/?access_token={{access_token}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pinterest",
+						"com"
+					],
+					"path": [
+						"v1",
+						"me",
+						"boards",
+						""
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "get pins from Recipe Board",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;",
+							"",
+							"var res = JSON.parse(responseBody);",
+							"var holder = [];",
+							"for(var x in res){",
+							"    holder.push(res[x]);",
+							"}",
+							"tests[\"Total Pins = \"] == holder.length"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": {
+					"raw": "https://api.pinterest.com/v1/boards/809662907947327302/pins/?access_token={{access_token}}",
+					"protocol": "https",
+					"host": [
+						"api",
+						"pinterest",
+						"com"
+					],
+					"path": [
+						"v1",
+						"boards",
+						"809662907947327302",
+						"pins",
+						""
+					],
+					"query": [
+						{
+							"key": "access_token",
+							"value": "{{access_token}}",
+							"equals": true,
+							"description": ""
+						}
+					],
+					"variable": []
+				},
+				"method": "GET",
+				"header": [
+					{
+						"key": "Authorization",
+						"value": "{{access_token}}",
+						"description": ""
+					}
+				],
+				"body": {},
+				"description": null
+			},
+			"response": []
+		},
+		{
+			"name": "create a new user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successfullly Created a new User\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"",
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"var res = JSON.parse(responseBody);",
+							"var id = res.user_id;",
+							"console.log(id);",
+							"\t\t\t\t\t\t\t",
+							"postman.setEnvironmentVariable(\"userID\", id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"first_name\" : \"Vadiwoo\",\n\t\"last_name\" : \"Karuppiah\",\n\t\"user_id\": \"809662976666707132\",\n\t\"email\": \"karuppiv@oregonstate.edu\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Get a specific user info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Showing specific user\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create a recipe for user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Successfullly Created a new Recipe\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"",
+							"tests[\"Successful POST request\"] = responseCode.code === 201 || responseCode.code === 202;",
+							"var res = JSON.parse(responseBody);",
+							"var id = res.id;",
+							"console.log(id);",
+							"\t\t\t\t\t\t\t",
+							"postman.setEnvironmentVariable(\"recipeID\", id);"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/recipe",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"recipe_name\" : \"Summer Cocktails\",\n\t\"source_url\": \"https://www.pinterest.com/r/pin/809662839232280702/4951786660808371059/f55b558a58f671955565ec82c981d2af0a1aa84f213694a87a8dab3424520ca2\"\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Getting specific user's  specific recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Showing specific recipe for specific user\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/recipe/{{recipeID}}",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit a specific recipe of an user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Edited Recipe\"] = responseBody.has(\"add ice\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/recipe/{{recipeID}}",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"instructions\" : \"add ice\"\n\t\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "PUT new information for the entire recipe",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"put user recipe with new information\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/recipe/{{recipeID}}",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"recipe_name\" : \"Summer chill\",\n\t\"recipe_type\" : \"cold drinks\",\n\t\"ingredients\" : \"lemon, mango,ice cubes\",\n\t\"instructions\" : \"freeze lemon, add soda\"\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a specific recipe of an user",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/recipe/{{recipeID}}",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Edit User Account Info",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Edited Recipe\"] = responseBody.has(\"new_email.com\")"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/account",
+				"method": "PATCH",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n \"email\" : \"new_email.com\"\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Put User to be Inactive",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"put user to be in in_active status\"] = responseCode.code === 200"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/account",
+				"method": "PUT",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": ""
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Create add recipe for user when user account is NOT active",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Cannot add recipe while user status is NOT active\"] = responseCode.code === 400"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/recipe",
+				"method": "POST",
+				"header": [
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"description": ""
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n\t\"recipe_name\" : \"Summer Cocktails\",\n\t\"source_url\": \"https://www.pinterest.com/r/pin/809662839232280702/4951786660808371059/f55b558a58f671955565ec82c981d2af0a1aa84f213694a87a8dab3424520ca2\"\n\n\n}"
+				},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a user account",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"status code is 200\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/account",
+				"method": "DELETE",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		},
+		{
+			"name": "Confirm user account is deleted",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"type": "text/javascript",
+						"exec": [
+							"tests[\"Showing specific user account info\"] = responseCode.code === 200;"
+						]
+					}
+				}
+			],
+			"request": {
+				"url": "https://cloud-finalproject-74821.appspot.com/user/{{userID}}/account",
+				"method": "GET",
+				"header": [],
+				"body": {},
+				"description": ""
+			},
+			"response": []
+		}
+	]
+}

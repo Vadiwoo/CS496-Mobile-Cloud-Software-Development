@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">AndroidHttpandOAuth</string>
+    <string name="post_message">Post My Message</string>
+    <string name= "get_message">Get My Messages</string>
+    <string name="start">HTTP and OAuth</string>
+</resources>
