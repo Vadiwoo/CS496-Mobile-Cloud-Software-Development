@@ -1,0 +1,67 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context="com.example.vadiwoo.cs496_androidui.relative_view">
+
+
+    <RelativeLayout
+        android:layout_width="363dp"
+        android:layout_height="555dp"
+        tools:layout_editor_absoluteX="24dp"
+        tools:layout_editor_absoluteY="24dp">
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="71dp"
+            android:layout_marginTop="84dp"
+            android:text="@string/first_element" />
+
+        <TextView
+            android:id="@+id/textView12"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView15"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="87dp"
+            android:layout_toEndOf="@+id/textView6"
+            android:text="@string/second_element" />
+
+        <TextView
+            android:id="@+id/textView13"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignStart="@+id/textView6"
+            android:layout_below="@+id/textView12"
+            android:layout_marginStart="24dp"
+            android:layout_marginTop="156dp"
+            android:text="@string/third_element" />
+
+        <TextView
+            android:id="@+id/textView14"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@+id/textView15"
+            android:layout_below="@+id/textView13"
+            android:layout_marginEnd="16dp"
+            android:layout_marginTop="17dp"
+            android:text="@string/fourth_element" />
+
+        <TextView
+            android:id="@+id/textView15"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/textView6"
+            android:layout_marginStart="48dp"
+            android:layout_marginTop="22dp"
+            android:layout_toEndOf="@+id/textView12"
+            android:text="@string/fifth_element" />
+    </RelativeLayout>
+
+</android.support.constraint.ConstraintLayout>

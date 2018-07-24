@@ -1,0 +1,13 @@
+<resources>
+    <string name="app_name">CS496_Android UI</string>
+    <string name="horizontal_button">Horizontal</string>
+    <string name="vertical_button">Vertical</string>
+    <string name="grid_button">Grid</string>
+    <string name="first_element">MONDAY</string>
+    <string name="second_element">TUESDAY</string>
+    <string name="third_element">WEDNESDAY</string>
+    <string name="fourth_element">THURSDAY</string>
+    <string name="fifth_element">FRIDAY</string>
+    <string name="title">CS 496 Android UI : 5 Different Activities</string>
+    <string name="relative_button">Relative</string>
+</resources>
